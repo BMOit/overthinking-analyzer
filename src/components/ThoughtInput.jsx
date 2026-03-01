@@ -27,13 +27,24 @@ export default function ThoughtInput() {
         Analyze
       </button>
 
-      {result && result.map((item, index) => (
-        <div key={index} style={{ marginTop: "20px" }}>
-          <h3>{item.type}</h3>
-          <p>{item.explanation}</p>
-          <p><strong>Reframe:</strong> {item.suggestion}</p>
+      {result && (
+        <div style={{ marginTop: "30px" }}>
+    
+          <h2>Your Thought</h2>
+          <p style={{ fontStyle: "italic", marginBottom: "20px" }}>
+            "{text}"
+          </p>
+
+          {result.map((item, index) => (
+            <div key={index} style={{ marginBottom: "25px" }}>
+              <h3>{item.type}</h3>
+              <p>{item.explanation}</p>
+              <p><strong>Reframe:</strong> {item.suggestion}</p>
+            </div>
+          ))}
+
         </div>
-      ))}
+      )}
     </div>
   );
 }

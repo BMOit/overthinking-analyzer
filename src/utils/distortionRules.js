@@ -1,5 +1,22 @@
 // src/utils/distortionRules.js
 
+const absoluteWords = [
+  "always",
+  "never",
+  "everyone",
+  "nobody",
+  "everything",
+  "nothing"
+];
+
+const shouldWords = [
+  "should",
+  "shouldn't",
+  "must",
+  "mustn't",
+  "ought to"
+];
+
 const negativeIdentityWords = [
   "useless",
   "stupid",
@@ -11,35 +28,27 @@ const negativeIdentityWords = [
   "not good enough"
 ];
 
-const absoluteWords = [
-  "always",
-  "never",
-  "everyone",
-  "nobody",
-  "everything",
-  "nothing",
-  "completely",
-  "totally"
-];
-
-const shouldWords = [
-  "should",
-  "shouldn't",
-  "must",
-  "mustn't",
-  "ought to"
-];
-
 export const rules = [
   {
-    type: "Overgeneralization",
-    test: (text) => {
-      return absoluteWords.some(word => text.includes(word));
-    },
-    explanation:
-      "This thought uses absolute language and assumes something is true in all situations.",
-    suggestion:
-      "Is this really true in every single case? What evidence suggests otherwise?"
+  type: "Overgeneralization",
+
+  test: (text) => {
+    const match = text.match(
+      /(always|never|everyone|nobody|everything|nothing|all the time|completely|totally)/
+    );
+
+    return match
+      ? {
+          matchedWord: match[0]
+        }
+      : false;
+  },
+
+  explanation: (word) =>
+    `The word "${word}" suggests this is true without any exceptions.`,
+
+  suggestion:
+    "Is this truly true in every single case? Can you think of even one exception?"
   },
 
   {
@@ -54,9 +63,9 @@ export const rules = [
       );
     },
     explanation:
-      "This thought predicts the worst possible outcome without considering more realistic possibilities.",
+      "You are predicting the worst possible outcome without considering more realistic possibilities.",
     suggestion:
-      "What is the most realistic outcome instead of the worst one?"
+      "What is the most realistic outcome? If the worst happened, how would you actually handle it?"
   },
 
   {
@@ -68,9 +77,9 @@ export const rules = [
       );
     },
     explanation:
-      "This thought turns a situation or mistake into a negative identity label.",
+      "You are turning a situation or mistake into a negative label about who you are as a person.",
     suggestion:
-      "Does one action or mistake truly define your entire identity?"
+      "Does this single moment truly define your entire identity?"
   },
 
   {
@@ -84,9 +93,9 @@ export const rules = [
       );
     },
     explanation:
-      "This thought assumes you know what others are thinking without evidence.",
+      "You are assuming you know what others are thinking without clear evidence.",
     suggestion:
-      "How can you know for sure what they are thinking? What are other possible explanations?"
+      "What other explanations could exist? Is there proof of what they think?"
   },
 
   {
@@ -99,9 +108,9 @@ export const rules = [
       );
     },
     explanation:
-      "This thought assumes that feelings reflect objective reality.",
+      "You are treating your feelings as proof that something is objectively true.",
     suggestion:
-      "Feelings are important, but what objective evidence supports this conclusion?"
+      "What objective evidence supports this belief?"
   },
 
   {
@@ -110,7 +119,7 @@ export const rules = [
       return shouldWords.some(word => text.includes(word));
     },
     explanation:
-      "This thought imposes rigid rules or expectations on yourself or others.",
+      "You are placing rigid expectations on yourself or others using words like 'should' or 'must'.",
     suggestion:
       "What would a more flexible or compassionate expectation look like?"
   }
