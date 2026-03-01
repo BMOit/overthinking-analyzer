@@ -1,15 +1,12 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import ThoughtInput from "./components/ThoughtInput";
 
 function App() {
   return (
-      <div style={{ padding: "40px", fontFamily: "sans-serif" }}>
-        <h1>Overthinking Analyzer</h1>
-        <p>Understand your thinking patterns.</p>
-      </div>
+    <div style={{ padding: "40px", fontFamily: "sans-serif" }}>
+      <h1>Overthinking Analyzer</h1>
+      <ThoughtInput />
+    </div>
   );
 }
 
-export default App
+export default App;
