@@ -24,6 +24,8 @@ export function analyzeThought(inputText) {
   return [
     {
       type: "No strong distortion detected",
+      explanation: "Your statement appears balanced and realistic.",
+      suggestion: null
     }
   ];
 }

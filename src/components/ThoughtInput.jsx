@@ -39,10 +39,15 @@ export default function ThoughtInput() {
             <div key={index} style={{ marginBottom: "25px" }}>
               <h3>{item.type}</h3>
               <p>{item.explanation}</p>
-              <p><strong>Reframe:</strong> {item.suggestion}</p>
+
+              {item.suggestion && (
+                <p>
+                  <strong>Reframe:</strong> {item.suggestion}
+                </p>
+              )}
             </div>
           ))}
-
+          
         </div>
       )}
     </div>
