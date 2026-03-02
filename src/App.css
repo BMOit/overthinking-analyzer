@@ -1,42 +1,102 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* BODY */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, #0f172a, #1e293b);
+  color: #e2e8f0;
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* MAIN CONTAINER */
+.app-container {
+  width: 100%;
+  max-width: 800px;   /* prevents stretching too wide */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* TITLE */
+.app-title {
+  font-size: clamp(28px, 5vw, 48px);  /* auto responsive */
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
-.card {
-  padding: 2em;
+.app-subtitle {
+  color: #94a3b8;
+  margin-bottom: 30px;
 }
 
-.read-the-docs {
-  color: #888;
+/* TEXTAREA */
+textarea {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: white;
+  font-size: 16px;
+  resize: none;
+  outline: none;
+}
+
+textarea:focus {
+  border-color: #6366f1;
+}
+
+/* BUTTON */
+button {
+  margin-top: 15px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  border: none;
+  background: #6366f1;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background: #4f46e5;
+}
+
+/* RESULT SECTION */
+.result-section {
+  margin-top: 40px;
+}
+
+.result-card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  border: 1px solid #334155;
+}
+
+.result-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #a5b4fc;
+}
+
+.reframe-label {
+  color: #c084fc;
+  font-weight: 600;
+}
+
+/* Highlight word */
+.highlight {
+  background: #ef4444;
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: white;
 }
