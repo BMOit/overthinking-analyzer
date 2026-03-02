@@ -3,13 +3,20 @@ import ThoughtInput from "./components/ThoughtInput";
 
 function App() {
   return (
-    <div className="app-container">
-      <div className="app-title">Overthinking Analyzer</div>
-      <div className="app-subtitle">
-        Identify cognitive distortions in your thoughts.
+    <>
+      <div className="shooting-star"></div>
+
+      <div className="app-container">
+        <h1 className="app-title">Overthinking Analyzer</h1>
+        <p className="app-subtitle">
+          Identify cognitive distortions in your thoughts.
+        </p>
+
+        <div className="glass-card">
+          <ThoughtInput />
+        </div>
       </div>
-      <ThoughtInput />
-    </div>
+    </>
   );
 }
 
