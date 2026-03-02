@@ -24,8 +24,6 @@ export function analyzeThought(inputText) {
   return [
     {
       type: "No strong distortion detected",
-      explanation: "No strong distortion patterns were detected.",
-      suggestion: "Try examining it from multiple perspectives."
     }
   ];
 }
