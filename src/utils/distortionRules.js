@@ -29,77 +29,73 @@ const negativeIdentityWords = [
 ];
 
 export const rules = [
+
+  // 🔹 Self-Labeling (Pattern Based)
   {
-  type: "Overgeneralization",
-
-  test: (text) => {
-    const match = text.match(
-      /(always|never|everyone|nobody|everything|nothing|all the time|completely|totally)/
-    );
-
-    return match
-      ? {
-          matchedWord: match[0]
-        }
-      : false;
-  },
-
-  explanation: (word) =>
-    `The word "${word}" suggests this is true without any exceptions.`,
-
-  suggestion:
-    "Is this truly true in every single case? Can you think of even one exception?"
-  },
-
-  {
-    type: "Catastrophizing",
+    type: "Self-Labeling",
     test: (text) => {
-      return (
-        text.includes("what if") ||
-        text.includes("ruin") ||
-        text.includes("disaster") ||
-        text.includes("worst") ||
-        text.includes("everything will go wrong")
-      );
-    },
-    explanation:
-      "You are predicting the worst possible outcome without considering more realistic possibilities.",
-    suggestion:
-      "What is the most realistic outcome? If the worst happened, how would you actually handle it?"
-  },
-
-  {
-  type: "Self-Labeling",
-  test: (text) => {
-    const words = ["useless", "stupid", "dumb", "worthless", "failure", "loser"];
-    
-    for (let word of words) {
-      if (text.includes(word)) {
-        return { matchedWord: word };
+      const identityPattern = /(i am|i'm|i m|im|i feel)\s+(useless|stupid|dumb|worthless|a failure|a loser|bad)/;
+      const match = text.match(identityPattern);
+      if (match) {
+        return { matchedWord: match[2] };
       }
-    }
-    return false;
-  },
-  explanation: (word) =>
-    `You are using the word "${word}" as a label about yourself.`,
-  suggestion:
-    "Does one moment or feeling define your entire identity?"
+      return false;
+    },
+    explanation: (word) =>
+      `You're turning a feeling into an identity by using "${word}" as a label.`,
+    suggestion:
+      "Does one moment or feeling truly define who you are?"
   },
 
+  // 🔹 Overgeneralization
+  {
+    type: "Overgeneralization",
+    test: (text) => {
+      const generalPattern = /(always|never|everyone|nobody|everything|nothing)/;
+      const match = text.match(generalPattern);
+      if (match) {
+        return { matchedWord: match[1] };
+      }
+      return false;
+    },
+    explanation: (word) =>
+      `The word "${word}" suggests something is true in all situations.`,
+    suggestion:
+      "Is it truly true in every single case? Can you think of one exception?"
+  },
+
+  // 🔹 Mind Reading
   {
     type: "Mind Reading",
     test: (text) => {
-      return (
-        text.includes("they think") ||
-        text.includes("they must think") ||
-        text.includes("everyone thinks") ||
-        text.includes("people think")
-      );
+      const mindPattern = /(everyone thinks|they think|people think)/;
+      const match = text.match(mindPattern);
+      if (match) {
+        return { matchedWord: match[1] };
+      }
+      return false;
     },
     explanation:
-      "You are assuming you know what others are thinking without clear evidence.",
+      "You're assuming you know what others think without clear evidence.",
     suggestion:
-      "What other explanations could exist? Is there proof of what they think?"
+      "What proof do you actually have about what others are thinking?"
+  },
+
+  // 🔹 Catastrophizing
+  {
+    type: "Catastrophizing",
+    test: (text) => {
+      const catastrophePattern = /(what if|ruin|disaster|worst|everything will go wrong)/;
+      const match = text.match(catastrophePattern);
+      if (match) {
+        return { matchedWord: match[1] };
+      }
+      return false;
+    },
+    explanation:
+      "You're predicting a worst-case outcome without considering more realistic possibilities.",
+    suggestion:
+      "What is the most realistic outcome instead of the worst one?"
   },
 
   {
