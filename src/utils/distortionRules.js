@@ -69,17 +69,21 @@ export const rules = [
   },
 
   {
-    type: "Self-Labeling",
-    test: (text) => {
-      if (!text.startsWith("i am")) return false;
-      return negativeIdentityWords.some(word =>
-        text.includes(word)
-      );
-    },
-    explanation:
-      "You are turning a situation or mistake into a negative label about who you are as a person.",
-    suggestion:
-      "Does this single moment truly define your entire identity?"
+  type: "Self-Labeling",
+  test: (text) => {
+    const words = ["useless", "stupid", "dumb", "worthless", "failure", "loser"];
+    
+    for (let word of words) {
+      if (text.includes(word)) {
+        return { matchedWord: word };
+      }
+    }
+    return false;
+  },
+  explanation: (word) =>
+    `You are using the word "${word}" as a label about yourself.`,
+  suggestion:
+    "Does one moment or feeling define your entire identity?"
   },
 
   {
